@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
 import { FormsModule } from '@angular/forms';
 import { Search } from './components/search/search';
-import { Recommendations } from './components/recommendations/recommendations';
 import { Orders } from './components/orders/orders';
 import { Home } from './components/home/home';
 import { Login } from './components/auth/login/login';
@@ -20,7 +19,6 @@ import { Details } from './components/details/details';
   declarations: [
     App,
     Search,
-    Recommendations,
     Orders,
     Home,
     Login,

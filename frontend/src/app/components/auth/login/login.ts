@@ -22,13 +22,12 @@ export class Login {
     this.userService.login({ email: this.email, password: this.password }).subscribe({
       next: (res: any) => {
         console.log('Login success:', res);
-        // Save user info
-        this.auth.login(res.userId); // mark logged in
+        this.auth.login(res.userId); 
         localStorage.setItem('userName', res.name);
         localStorage.setItem('userId', res.userId);
         
         this.loading = false;
-        this.router.navigate(['/app']); // Redirect to home
+        this.router.navigate(['/app']); 
       },
       error: (err) => {
         console.error('Login error:', err);

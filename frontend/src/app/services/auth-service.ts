@@ -7,7 +7,7 @@ import { tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:4000/api/auth'; // backend API
+  private apiUrl = 'http://localhost:4000/api/auth'; 
   private loggedIn = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient) {

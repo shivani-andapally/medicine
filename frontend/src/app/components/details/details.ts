@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 import { Order } from '../../services/order';
+import { Userservice } from '../../services/userservice';
 
 @Component({
   selector: 'app-orders',
@@ -15,13 +16,17 @@ export class Details {
   error = '';
   currentOrder: any;
   showGoToOrders: boolean = false;
-
-  constructor(private router: Router, private orderService: Order) {
+  recommendations: any[] = [];  
+  constructor(public router: Router, private orderService: Order,private user:Userservice) {
     const nav = this.router.getCurrentNavigation();
     this.medicine = nav?.extras?.state?.['medicine'];
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (this.medicine?.name) {
+      this.fetchRecommendations(this.medicine.name);
+    }
+  }
 
   placeOrder() {
     const userId = localStorage.getItem('userId');
@@ -54,4 +59,20 @@ export class Details {
   goToOrders() {
   this.router.navigate(['/app/orders']);
 }
+fetchRecommendations(name: string) {
+  if (!name) return;  
+
+  this.recommendations = [];  
+  this.user.getRecommendations(name)  
+    .subscribe({
+      next: (res: any) => {
+        this.recommendations = res?.recommendations || res;  
+      },
+      error: (err) => {
+        console.error('Failed to load recommendations', err);
+        this.recommendations = [];  
+      }
+    });
+}
+
 }

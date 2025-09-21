@@ -31,7 +31,6 @@ router.get('/:userId', async (req, res) => {
   try {
     const orders = await Order.find({ userId: req.params.userId }).populate('medicineId');
     
-    // Transform to frontend-friendly format
     const formattedOrders = orders.map(o => ({
       _id: o._id,
       medicine: o.medicineId,

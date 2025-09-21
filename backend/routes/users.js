@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
 const Medicine = require("../models/Medicine");
-// ✅ Signup
+// Signup
 router.post("/signup", async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -23,7 +23,7 @@ router.post("/signup", async (req, res) => {
   }
 });
 
-// ✅ Login
+// Login
 router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -44,7 +44,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
-// ✅ Recommendations based on purchase history
+// Recommendations based on purchase history
 router.get("/rec/:userId", async (req, res) => {
   try {
     const userId = req.params.userId;
@@ -87,15 +87,13 @@ router.get("/recom/:medicineName", async (req, res) => {
   try {
     const { medicineName } = req.params;
 
-    // Find the base medicine
     const baseMedicine = await Medicine.findOne({ name: medicineName });
     if (!baseMedicine) return res.status(404).json({ message: "Medicine not found" });
 
-    // Find medicines in the same category, excluding the base medicine
     const recommendations = await Medicine.find({
       category: baseMedicine.category,
       _id: { $ne: baseMedicine._id }
-    }).limit(5); // limit to 5 recommendations
+    }).limit(5); 
 
     res.json({ base: baseMedicine, recommendations });
   } catch (err) {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Medicine } from '../../services/medicine';
 import { Router } from '@angular/router';
+import { Userservice } from '../../services/userservice';
 
 @Component({
   selector: 'app-search',
@@ -15,7 +16,7 @@ export class Search implements OnInit {
   loading = false;
   userId: string | null = null;
 
-  constructor(private medicine: Medicine, private router: Router) {}
+  constructor(private medicine: Medicine, private router: Router,private userService: Userservice) {}
   ngOnInit() {
   // Get userId from localStorage
   this.userId = localStorage.getItem('userId');
@@ -32,7 +33,7 @@ loadInitialRecommendations() {
   if (!this.userId) return; // prevent calling backend without userId
 
   this.loading = true;
-  this.medicine.getInitialRecommendations(this.userId).subscribe({
+  this.userService.getInitialRecommendations(this.userId).subscribe({
     next: (data) => {
       this.recommendations = data;
       this.loading = false;
@@ -70,19 +71,5 @@ loadInitialRecommendations() {
     if (!medicine) return;
     console.log('Buying medicine:', medicine);
     this.router.navigate(['/app/details'], { state: { medicine } });
-  }
-
-  getRecommendations(medName: string) {
-    this.loading = true;
-    this.medicine.getRecommendations(medName).subscribe({
-      next: (data: any) => {
-        this.recommendations = data.recommendations;
-        this.loading = false;
-      },
-      error: (err) => {
-        console.error('Recommendation error', err);
-        this.loading = false;
-      }
-    });
   }
 }

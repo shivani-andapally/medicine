@@ -3,7 +3,7 @@ const router = express.Router();
 const Medicine = require("../models/Medicine");
 
 
-// ✅ GET all medicines
+// GET all medicines
 router.get("/", async (req, res) => {
   try {
     const medicines = await Medicine.find();
@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// ✅ POST add new medicine
+// POST add new medicine
 router.post("/", async (req, res) => {
   try {
     const medicine = new Medicine(req.body);
@@ -24,7 +24,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-// ✅ Search by name or category or symptons
+// Search by name or category or symptons
 // Stop words list
 const STOP_WORDS = [
   "i","me","my","mine","we","our","ours","you","your","yours","he","him","his",
@@ -64,10 +64,8 @@ router.get("/search", async (req, res) => {
       return res.json(allMedicines);
     }
 
-    // Fetch all medicines first
     const medicines = await Medicine.find();
 
-    // Compute relevance score
     const scored = medicines.map(med => {
       let score = 0;
 
@@ -87,7 +85,6 @@ router.get("/search", async (req, res) => {
       return { medicine: med, score };
     });
 
-    // Filter out score 0 and sort descending
     const results = scored
       .filter(item => item.score > 0)
       .sort((a, b) => b.score - a.score)
@@ -102,7 +99,7 @@ router.get("/search", async (req, res) => {
 
 
 
-// ✅ GET medicine by ID
+// GET medicine by ID
 router.get("/:id", async (req, res) => {
   try {
     const medicine = await Medicine.findById(req.params.id);
@@ -125,7 +122,7 @@ router.post("/many", async (req, res) => {
 
 
 
-// ✅ PUT update medicine
+// PUT update medicine
 router.put("/:id", async (req, res) => {
   try {
     const medicine = await Medicine.findByIdAndUpdate(
@@ -140,7 +137,7 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-// ✅ DELETE medicine
+// DELETE medicine
 router.delete("/:id", async (req, res) => {
   try {
     const medicine = await Medicine.findByIdAndDelete(req.params.id);

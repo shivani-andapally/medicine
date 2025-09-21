@@ -17,4 +17,12 @@ export class Userservice {
   login(credentials: { email: string, password: string }): Observable<any> {
     return this.http.post(`${this.baseUrl}/login`, credentials);
   }
+
+  getInitialRecommendations(userId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/rec/${userId}`);
+  }
+
+  getRecommendations(name: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/recom/${name}`);
+  }
 }

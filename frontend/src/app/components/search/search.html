@@ -3,8 +3,6 @@
   <h2 class="text-success mb-4 text-center">
     <i class="fas fa-search me-2"></i> Search Medicines
   </h2>
-
-  <!-- Modern Search Bar -->
   <div class="d-flex justify-content-center mb-4">
     <div class="search-bar position-relative shadow-sm w-100" style="max-width: 550px;">
       <input
@@ -23,14 +21,12 @@
     </div>
   </div>
 
-  <!-- Loading spinner -->
   <div *ngIf="loading" class="text-center my-3">
     <div class="spinner-border text-success spinner-border-sm" role="status">
       <span class="visually-hidden">Loading...</span>
     </div>
   </div>
 
-  <!-- Recommendations: show initially and also when search is empty -->
   <div *ngIf="(!query || query.trim() === '') && recommendations.length > 0" class="mt-4">
     <h5 class="text-success mb-3">Recommended for you:</h5>
     <div *ngFor="let rec of recommendations" class="card mb-3 shadow-sm border-success">
@@ -48,7 +44,6 @@
     </div >
   </div>
 
-  <!-- Search Results -->
   <div *ngIf="query && medicines.length > 0" class="mt-4">
     <h5 class="text-success mb-3">Search Results:</h5>
     <div *ngFor="let med of medicines" class="card mb-3 shadow-sm">
@@ -60,9 +55,6 @@
         </p>
         <p class="card-text"><strong>Composition:</strong> {{ med.composition }}</p>
         <div class="d-flex mt-2">
-          <button class="btn btn-outline-primary btn-sm me-2" (click)="getRecommendations(med.name)">
-            <i class="fas fa-heartbeat me-1"></i> Get Recommendations
-          </button>
           <button class="btn btn-outline-success btn-sm" (click)="buyNow(med)">
             <i class="fas fa-shopping-cart me-1"></i> Buy Now
           </button>
@@ -71,7 +63,6 @@
     </div>
   </div>
 
-  <!-- No results -->
   <div *ngIf="!loading && query && medicines.length === 0" class="text-center text-muted mt-3">
     No medicines found.
   </div>

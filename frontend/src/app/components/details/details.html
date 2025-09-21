@@ -29,4 +29,22 @@
       <div *ngIf="error" class="alert alert-danger mt-3">{{ error }}</div>
     </div>
   </div>
+<div *ngIf="recommendations.length > 0" class="mt-4">
+  <h3 class="text-success">You may also like:</h3>
+  <div class="row">
+    <div class="col-md-4" *ngFor="let rec of recommendations">
+      <div class="card shadow-sm mb-3">
+        <div class="card-body">
+          <h5 class="card-title">{{ rec.name }}</h5>
+          <p class="card-text"><strong>Category:</strong> {{ rec.category }}</p>
+          <button class="btn btn-outline-success btn-sm"
+            (click)="router.navigate(['/app/details'], { state: { medicine: rec } })">
+            View Details
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 </div>
