@@ -1,0 +1,32 @@
+<div class="container mt-5">
+  <h2 class="text-success mb-4 text-center">
+    <i class="fas fa-shopping-cart me-2"></i> Place Order & Purchase History
+  </h2>
+  <div *ngIf="medicine" class="card mb-4 shadow-sm">
+    <div class="card-body">
+      <h5 class="card-title">{{ medicine.name }}</h5>
+      <p class="card-text"><strong>Category:</strong> {{ medicine.category }}</p>
+      <p class="card-text"><strong>Composition:</strong> {{ medicine.composition }}</p>
+      <p class="card-text">
+        <strong>Symptoms:</strong>
+        <span *ngFor="let s of medicine.symptoms" class="badge bg-secondary me-1">{{ s }}</span>
+      </p>
+
+      <div class="mb-3 mt-2">
+        <label class="form-label">Quantity:</label>
+        <input type="number" class="form-control w-25" [(ngModel)]="quantity" min="1">
+      </div>
+
+      <button class="btn btn-success" (click)="placeOrder()">
+        <i class="fas fa-cart-plus me-1"></i> Place Order
+      </button>
+
+      <div *ngIf="success" class="alert alert-success mt-3">{{ success }}
+        <button class="btn btn-sm btn-success ms-2" *ngIf="showGoToOrders" (click)="goToOrders()">
+    Go to Orders
+  </button>
+      </div>
+      <div *ngIf="error" class="alert alert-danger mt-3">{{ error }}</div>
+    </div>
+  </div>
+</div>

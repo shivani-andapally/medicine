@@ -1,0 +1,7 @@
+/* Make the whole page use a light green background */
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom right, #a8e6cf, #dcedc1);
+}

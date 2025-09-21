@@ -1,0 +1,28 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f6fff8; // soft light green background
+  color: #333;
+}
+
+.navbar {
+  background-color: #81c784 !important; // light green shade
+}
+
+.btn-custom {
+  background-color: #4caf50; // green
+  color: white;
+  border-radius: 8px;
+  padding: 0.5rem 1.2rem;
+  &:hover {
+    background-color: #388e3c;
+  }
+}
+
+.card {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    transform: translateY(-5px);
+  }
+}

@@ -1,0 +1,79 @@
+<div class="container mt-5">
+
+  <h2 class="text-success mb-4 text-center">
+    <i class="fas fa-search me-2"></i> Search Medicines
+  </h2>
+
+  <!-- Modern Search Bar -->
+  <div class="d-flex justify-content-center mb-4">
+    <div class="search-bar position-relative shadow-sm w-100" style="max-width: 550px;">
+      <input
+        type="text"
+        class="form-control form-control-lg rounded-pill ps-4 pe-5"
+        placeholder="Search medicines, symptoms..."
+        [(ngModel)]="query"
+        (keyup.enter)="search()"
+      />
+      <button
+        class="btn btn-success position-absolute top-50 end-0 translate-middle-y me-2 rounded-pill"
+        (click)="search()"
+      >
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Loading spinner -->
+  <div *ngIf="loading" class="text-center my-3">
+    <div class="spinner-border text-success spinner-border-sm" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+  <!-- Recommendations: show initially and also when search is empty -->
+  <div *ngIf="(!query || query.trim() === '') && recommendations.length > 0" class="mt-4">
+    <h5 class="text-success mb-3">Recommended for you:</h5>
+    <div *ngFor="let rec of recommendations" class="card mb-3 shadow-sm border-success">
+      <div class="card-body">
+        <h5 class="card-title">{{ rec.name }}</h5>
+        <p class="card-text">
+          <span class="badge bg-success me-1">{{ rec.category }}</span>
+          <span *ngFor="let s of rec.symptoms" class="badge bg-secondary me-1">{{ s }}</span>
+        </p>
+        <p class="card-text"><strong>Composition:</strong> {{ rec.composition }}</p>
+        <button class="btn btn-outline-success btn-sm mt-2" (click)="buyNow(rec)">
+          <i class="fas fa-shopping-cart me-1"></i> Buy Now
+        </button>
+      </div>
+    </div >
+  </div>
+
+  <!-- Search Results -->
+  <div *ngIf="query && medicines.length > 0" class="mt-4">
+    <h5 class="text-success mb-3">Search Results:</h5>
+    <div *ngFor="let med of medicines" class="card mb-3 shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title">{{ med.name }}</h5>
+        <p class="card-text">
+          <span class="badge bg-success me-1">{{ med.category }}</span>
+          <span *ngFor="let s of med.symptoms" class="badge bg-secondary me-1">{{ s }}</span>
+        </p>
+        <p class="card-text"><strong>Composition:</strong> {{ med.composition }}</p>
+        <div class="d-flex mt-2">
+          <button class="btn btn-outline-primary btn-sm me-2" (click)="getRecommendations(med.name)">
+            <i class="fas fa-heartbeat me-1"></i> Get Recommendations
+          </button>
+          <button class="btn btn-outline-success btn-sm" (click)="buyNow(med)">
+            <i class="fas fa-shopping-cart me-1"></i> Buy Now
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- No results -->
+  <div *ngIf="!loading && query && medicines.length === 0" class="text-center text-muted mt-3">
+    No medicines found.
+  </div>
+
+</div>

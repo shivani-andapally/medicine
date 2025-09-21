@@ -1,0 +1,40 @@
+<div class="container mt-5">
+
+  <h2 class="text-success mb-4 text-center">
+    <i class="fas fa-shopping-cart me-2"></i> Orders
+  </h2>
+
+  <!-- Current Order -->
+  <div *ngIf="currentOrder" class="card mb-3 shadow-sm border-success">
+    <div class="card-body">
+      <h5 class="card-title">Current Order: {{ currentOrder.medicine.name }}</h5>
+      <p class="card-text"><strong>Quantity:</strong> {{ currentOrder.quantity }}</p>
+      <p class="card-text"><strong>Total Price:</strong> {{ currentOrder.totalPrice | currency }}</p>
+    </div>
+  </div>
+
+  <!-- Purchase History -->
+  <div *ngIf="purchaseHistory.length > 0" class="mt-4">
+    <h5 class="text-success mb-3">Purchase History:</h5>
+    <div *ngFor="let order of purchaseHistory" class="card mb-3 shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title">{{ order.medicine.name }}</h5>
+        <p class="card-text">
+          <span class="badge bg-success me-1">{{ order.medicine.category }}</span>
+          <span *ngFor="let s of order.medicine.symptoms" class="badge bg-secondary me-1">{{ s }}</span>
+        </p>
+        <p class="card-text"><strong>Composition:</strong> {{ order.medicine.composition }}</p>
+        <p class="card-text"><strong>Quantity:</strong> {{ order.quantity }}</p>
+        <p class="card-text"><strong>Total Price:</strong> {{ order.totalPrice | currency }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!purchaseHistory || purchaseHistory.length === 0" class="text-center text-muted mt-3">
+    No purchase history found.
+  </div>
+
+  <div *ngIf="error" class="alert alert-danger mt-3">{{ error }}</div>
+  <div *ngIf="success" class="alert alert-success mt-3">{{ success }}</div>
+
+</div>
