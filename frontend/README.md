@@ -1,59 +1,150 @@
-# Frontend
+**Medicine Recommendation Web Application
+Project Overview**
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.2.
+This is a full-stack web application that allows users to search for medicines, view personalized recommendations, and place orders. The application uses Angular for the frontend and Node.js + Express + MongoDB for the backend.
 
-## Development server
+**Key Features:**
 
-To start a local development server, run:
+User registration and login
 
-```bash
+Search medicines by name, category, or symptoms
+
+Personalized medicine recommendations based on user purchase history
+
+Place orders and view order history
+
+View detailed medicine information
+
+**Technologies Used**
+Frontend
+
+Angular 
+
+Bootstrap 5
+
+HTML, CSS, TypeScript
+
+Backend
+
+Node.js
+
+Express.js
+
+MongoDB with Mongoose
+
+**Other**
+
+HTTPClient for API calls
+
+RxJS for handling observables
+
+bcrypt for password hashing
+
+**Folder Structure**
+/backend
+  ├── models/           # Mongoose schemas (User, Medicine, Order)
+  ├── routes/           # Express routes (users, medicines, orders)
+  ├── app.js            # Main Express server
+  ├── package.json
+/frontend
+  ├── src/
+      ├── app/
+          ├── services/ # Angular services (Medicine, UserService)
+          ├── search/   # Search component
+      ├── environments/ # Environment configs
+  ├── angular.json
+  ├── package.json
+
+**Installation**
+**Backend**
+
+Navigate to the backend folder:
+
+cd backend
+
+
+Install dependencies:
+
+npm install
+
+
+Start the server (development):
+
+npm run dev
+
+
+Server will run at http://localhost:4000.
+
+Note: The MongoDB connection string is currently hard-coded in app.js.
+
+**Frontend**
+
+Navigate to the frontend folder:
+
+cd frontend
+
+
+Install dependencies:
+
+npm install
+
+
+Start Angular development server:
+
 ng serve
-```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-## Code scaffolding
+Frontend will run at http://localhost:4200.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+**API Endpoints**
+Users
 
-```bash
-ng generate component component-name
-```
+POST /users/signup – Register new user
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+POST /users/login – Login
 
-```bash
-ng generate --help
-```
+GET /users/rec/:userId – Get personalized recommendations
 
-## Building
+GET /users/recom/:medicineName – Get recommendations based on medicine
 
-To build the project run:
+Medicines
 
-```bash
-ng build
-```
+GET /medicines – Get all medicines
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+GET /medicines/search?q= – Search medicines
 
-## Running unit tests
+GET /medicines/:id – Get medicine details
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+POST /medicines – Add medicine (admin)
 
-```bash
-ng test
-```
+Orders
 
-## Running end-to-end tests
+POST /orders – Place an order
 
-For end-to-end (e2e) testing, run:
+GET /orders/user/:userId – Get orders by user
 
-```bash
-ng e2e
-```
+Usage
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Signup or login to the application
 
-## Additional Resources
+Search medicines by name, category, or symptoms
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+View personalized recommendations
+
+Click “Buy Now” to place an order
+
+Click “Get Recommendations” to see medicines related to a specific medicine
+
+
+Update API URLs in medicine.ts and userservice.ts if hosting backend on a server
+
+**Future Enhancements**
+
+Add admin panel to manage medicines
+
+Enable payment gateway integration
+
+Implement user reviews and ratings for medicines
+
+Improve recommendation algorithm using ML
+
