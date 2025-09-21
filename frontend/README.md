@@ -40,20 +40,6 @@ RxJS for handling observables
 
 bcrypt for password hashing
 
-**Folder Structure**
-/backend
-  ├── models/           # Mongoose schemas (User, Medicine, Order)
-  ├── routes/           # Express routes (users, medicines, orders)
-  ├── app.js            # Main Express server
-  ├── package.json
-/frontend
-  ├── src/
-      ├── app/
-          ├── services/ # Angular services (Medicine, UserService)
-          ├── search/   # Search component
-      ├── environments/ # Environment configs
-  ├── angular.json
-  ├── package.json
 
 **Installation**
 **Backend**
