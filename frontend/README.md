@@ -16,6 +16,7 @@ Place orders and view order history
 View detailed medicine information
 
 **Technologies Used**
+
 Frontend
 
 Angular 
