@@ -38,7 +38,7 @@ Express.js
 
 MongoDB with Mongoose
 
-Other
+**Other**
 
 Angular HttpClient (API calls)
 
@@ -47,7 +47,9 @@ RxJS (observables)
 bcrypt (password hashing)
 
 **⚙️ Installation**
+
 **Backend**
+
 cd backend
 npm install
 npm run dev
@@ -58,6 +60,7 @@ Server runs at: http://localhost:4000
 (MongoDB connection string is configured directly in app.js)
 
 **Frontend**
+
 cd frontend
 npm install
 ng serve
