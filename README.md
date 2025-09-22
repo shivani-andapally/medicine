@@ -51,7 +51,9 @@ bcrypt (password hashing)
 **Backend**
 
 cd backend
+
 npm install
+
 npm run dev
 
 
@@ -62,14 +64,17 @@ Server runs at: http://localhost:4000
 **Frontend**
 
 cd frontend
+
 npm install
+
 ng serve
 
 
 App runs at: http://localhost:4200
 
-📡 API Endpoints
-Users
+**📡 API Endpoints**
+
+**Users**
 
 POST /users/signup – Register new user
 
@@ -79,7 +84,7 @@ GET /users/rec/:userId – Get personalized recommendations
 
 GET /users/recom/:medicineName – Get recommendations by medicine
 
-Medicines
+**Medicines**
 
 GET /medicines – Get all medicines
 
@@ -89,7 +94,7 @@ GET /medicines/:id – Get medicine details
 
 POST /medicines – Add new medicine (admin only)
 
-Orders
+**Orders**
 
 POST /orders – Place an order
 
@@ -97,7 +102,7 @@ GET /orders/user/:userId – Get orders by user
 
 📖 Functionalities Explained
 
-User Module
+**User Module**
 
 Signup and login with validation.
 
@@ -105,7 +110,7 @@ Passwords are securely hashed before saving.
 
 Each user has their own purchase history.
 
-Medicine Module
+**Medicine Module**
 
 Users can search medicines by name, category, or symptom.
 
@@ -113,13 +118,13 @@ View details such as name, brand, usage, and description.
 
 Admin can add new medicines.
 
-Recommendation Module
+**Recommendation Module**
 
 Personalized recommendations fetched based on user’s previous purchases.
 
 Related recommendations fetched when searching by medicine name.
 
-Orders Module
+**Orders Module**
 
 Users can add medicines to order.
 
