@@ -11,9 +11,13 @@ This is a full-stack web application that allows users to search for medicines, 
 **🚀 Key Features**
 
 ✅ User registration and login
+
 ✅ Search medicines by name, category, or symptoms
+
 ✅ Personalized recommendations based on purchase history
+
 ✅ Place and view orders
+
 ✅ View detailed medicine information
 
 **🛠️ Technologies Used**
