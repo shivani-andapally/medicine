@@ -1,20 +1,22 @@
-**Medicine Recommendation Web Application Project Overview**
+**Medicine Recommendation Web Application**
 
-This is a full-stack web application that allows users to search for medicines, view personalized recommendations, and place orders. The application uses Angular for the frontend and Node.js + Express + MongoDB for the backend.
+This is a full-stack web application that allows users to search for medicines, view personalized recommendations, and place orders.
 
-**Key Features:**
+**Frontend:** Angular
 
-User registration and login
+**Backend:** Node.js + Express
 
-Search medicines by name, category, or symptoms
+**Database:** MongoDB
 
-Personalized medicine recommendations based on user purchase history
+**🚀 Key Features**
 
-Place orders and view order history
+✅ User registration and login
+✅ Search medicines by name, category, or symptoms
+✅ Personalized recommendations based on purchase history
+✅ Place and view orders
+✅ View detailed medicine information
 
-View detailed medicine information
-
-**Technologies Used**
+**🛠️ Technologies Used**
 
 **Frontend**
 
@@ -32,49 +34,35 @@ Express.js
 
 MongoDB with Mongoose
 
-**Other**
+Other
 
-HTTPClient for API calls
+Angular HttpClient (API calls)
 
-RxJS for handling observables
+RxJS (observables)
 
-bcrypt for password hashing
+bcrypt (password hashing)
 
-**Installation Backend**
-
-Navigate to the backend folder:
-
+**⚙️ Installation**
+**Backend**
 cd backend
-
-Install dependencies:
-
 npm install
-
-Start the server (development):
-
 npm run dev
 
-Server will run at http://localhost:4000.
 
-Note: The MongoDB connection string is currently hard-coded in app.js.
+Server runs at: http://localhost:4000
 
-Frontend
+(MongoDB connection string is configured directly in app.js)
 
-Navigate to the frontend folder:
-
+**Frontend**
 cd frontend
-
-**Install dependencies:**
-
 npm install
-
-Start Angular development server:
-
 ng serve
 
-Frontend will run at http://localhost:4200.
 
-API Endpoints Users
+App runs at: http://localhost:4200
+
+📡 API Endpoints
+Users
 
 POST /users/signup – Register new user
 
@@ -82,7 +70,7 @@ POST /users/login – Login
 
 GET /users/rec/:userId – Get personalized recommendations
 
-GET /users/recom/:medicineName – Get recommendations based on medicine
+GET /users/recom/:medicineName – Get recommendations by medicine
 
 Medicines
 
@@ -92,7 +80,7 @@ GET /medicines/search?q= – Search medicines
 
 GET /medicines/:id – Get medicine details
 
-POST /medicines – Add medicine (admin)
+POST /medicines – Add new medicine (admin only)
 
 Orders
 
@@ -100,26 +88,79 @@ POST /orders – Place an order
 
 GET /orders/user/:userId – Get orders by user
 
-**Usage**
+📖 Functionalities Explained
 
-Signup or login to the application
+User Module
 
-Search medicines by name, category, or symptoms
+Signup and login with validation.
 
-View personalized recommendations
+Passwords are securely hashed before saving.
 
-Click “Buy Now” to place an order
+Each user has their own purchase history.
 
-Click “Get Recommendations” to see medicines related to a specific medicine
+Medicine Module
 
-Update API URLs in medicine.ts and userservice.ts if hosting backend on a server
+Users can search medicines by name, category, or symptom.
 
-**Future Enhancements**
+View details such as name, brand, usage, and description.
 
-Add admin panel to manage medicines
+Admin can add new medicines.
 
-Enable payment gateway integration
+Recommendation Module
 
-Implement user reviews and ratings for medicines
+Personalized recommendations fetched based on user’s previous purchases.
 
-Improve recommendation algorithm using ML
+Related recommendations fetched when searching by medicine name.
+
+Orders Module
+
+Users can add medicines to order.
+
+Orders are linked to user profiles.
+
+Users can view their past orders.
+
+**🗄️ Database Schema Design******
+
+The application uses MongoDB with Mongoose schemas for structured storage.
+
+**User Schema**
+const UserSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  purchaseHistory: [{
+    medicineId: { type: mongoose.Schema.Types.ObjectId, ref: "Medicine" },
+    quantity: { type: Number, default: 1 }
+  }]
+});
+
+**Medicine Schema**
+const MedicineSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  composition: { type: String },
+  category: { type: String },
+  price: { type: Number },
+  symptoms: {type: [String]},
+  createdAt: { type: Date, default: Date.now }
+});
+
+**Order Schema**
+const OrderSchema = new mongoose.Schema({
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  medicineId: { type: mongoose.Schema.Types.ObjectId, ref: 'Medicine', required: true },
+  quantity: { type: Number, default: 1 },
+  createdAt: { type: Date, default: Date.now }
+});
+
+
+
+**🔮 Future Enhancements**
+
+Admin panel to manage medicines
+
+Payment gateway integration
+
+User reviews and ratings
+
+Smarter recommendation algorithm using ML
