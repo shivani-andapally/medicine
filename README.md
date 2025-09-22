@@ -120,7 +120,7 @@ View details such as name, brand, usage, and description.
 
 Personalized recommendations fetched based on user’s previous purchases.
 
-You can see recommendations under the search bar by default that recomendations are from previous purchases and most purchased medicins by all users.
+You can see recommendations under the search bar by default that recomendations are from previous purchases and most purchased medicines by all users.
 
 Related recommendations fetched when searching by medicine name.
 
