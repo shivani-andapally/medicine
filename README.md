@@ -124,7 +124,7 @@ You can see recommendations under the search bar by default that recomendations 
 
 Related recommendations fetched when searching by medicine name.
 
-After clicking on buynow button go goes to details page of the medicin and here under that you can see the recomendations of the medicins related to that medicin.
+After clicking on buynow button you goes to details page of the medicine and here under that you can see the recomendations of the medicines related to that medicine.
 
 **Orders Module**
 
