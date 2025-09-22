@@ -116,17 +116,21 @@ Users can search medicines by name, category, or symptom.
 
 View details such as name, brand, usage, and description.
 
-Admin can add new medicines.
-
 **Recommendation Module**
 
 Personalized recommendations fetched based on user’s previous purchases.
 
+You can see recommendations under the search bar by default that recomendations are from previous purchases and most purchased medicins by all users.
+
 Related recommendations fetched when searching by medicine name.
+
+After clicking on buynow button go goes to details page of the medicin and here under that you can see the recomendations of the medicins related to that medicin.
 
 **Orders Module**
 
 Users can add medicines to order.
+
+After ordering the medicines those are added to the history of the purchase of a particular user.click on the orders on the navbar and you can see orders history.
 
 Orders are linked to user profiles.
 
@@ -135,6 +139,8 @@ Users can view their past orders.
 **🗄️ Database Schema Design******
 
 The application uses MongoDB with Mongoose schemas for structured storage.
+
+kindly add data to the storage using these schemas and check the project.
 
 **User Schema**
 const UserSchema = new mongoose.Schema({
